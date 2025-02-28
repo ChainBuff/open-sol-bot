@@ -1,6 +1,6 @@
 [project]
 name = "open-sol-bot"
-version = "0.1.9"
+version = "0.2.0"
 description = "Open Solana Trading Bot"
 authors = [
     { name = "mkdir700", email = "mkdir700@gmail.com" },

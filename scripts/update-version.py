@@ -28,26 +28,22 @@ def update_version_in_file(filepath, version):
     with open(filepath) as f:
         content = f.read()
 
-    # 匹配两种模式：version = "x.x.x" 或 [project] 块中的 version = "x.x.x"
-    patterns = [
-        r'(version\s*=\s*)"[^"]+"',  # 匹配 version = "x.x.x"
-        r'(\[project\](?:(?!\[project\]).)*?version\s*=\s*)"[^"]+"',  # 匹配 [project] 下的 version
-    ]
+    # 只匹配 [project] 部分中的 version = "x.x.x"
+    pattern = r'(\[project\](?:(?!\[).)*?version\s*=\s*)"[^"]+"'
 
     updated = False
-    for pattern in patterns:
-        if re.search(pattern, content, re.MULTILINE | re.DOTALL):
-            content = re.sub(
-                pattern,
-                lambda m: replace_version(m, version),
-                content,
-                flags=re.MULTILINE | re.DOTALL,
-            )
-            updated = True
-
-    if not updated:
-        print(f"Warning: No version field found in {filepath}")
+    if re.search(pattern, content, re.MULTILINE | re.DOTALL):
+        content = re.sub(
+            pattern,
+            lambda m: replace_version(m, version),
+            content,
+            flags=re.MULTILINE | re.DOTALL,
+        )
+        updated = True
     else:
+        print(f"Warning: No [project] version field found in {filepath}")
+
+    if updated:
         with open(filepath, "w") as f:
             f.write(content)
 
@@ -77,13 +73,13 @@ def main():
         if update_version_in_file(filepath, version):
             updated_files.append(filepath)
 
-    # if updated_files:
-    #     try:
-    #         subprocess.run(["git", "add"] + updated_files, check=True)
-    #         commit_message = f"Update version to {version} in files: {', '.join(updated_files)}"
-    #         subprocess.run(["git", "commit", "-m", commit_message], check=True)
-    #     except subprocess.CalledProcessError:
-    #         print("Error: Git commit failed for updated files.")
+    if updated_files:
+        try:
+            subprocess.run(["git", "add", *updated_files], check=True)
+            commit_message = f"Update version to {version} in files: {', '.join(updated_files)}"
+            subprocess.run(["git", "commit", "-m", commit_message], check=True)
+        except subprocess.CalledProcessError:
+            print("Error: Git commit failed for updated files.")
 
     print("Version update complete.")
 

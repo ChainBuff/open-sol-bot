@@ -1377,7 +1377,7 @@ wheels = [
 
 [[package]]
 name = "open-sol-bot"
-version = "0.1.9"
+version = "0.2.0"
 source = { virtual = "." }
 dependencies = [
     { name = "solbot-cache" },
@@ -2085,7 +2085,7 @@ wheels = [
 
 [[package]]
 name = "solbot-cache"
-version = "0.1.9"
+version = "0.2.0"
 source = { editable = "libs/cache" }
 dependencies = [
     { name = "aiocache", extra = ["redis"] },
@@ -2154,12 +2154,12 @@ requires-dist = [
 
 [[package]]
 name = "solbot-cache-preloader"
-version = "0.1.0"
+version = "0.2.0"
 source = { editable = "app/cache-preloader" }
 
 [[package]]
 name = "solbot-common"
-version = "0.1.9"
+version = "0.2.0"
 source = { editable = "libs/common" }
 dependencies = [
     { name = "aiocache", extra = ["redis"] },
@@ -2230,7 +2230,7 @@ requires-dist = [
 
 [[package]]
 name = "solbot-db"
-version = "0.1.9"
+version = "0.2.0"
 source = { editable = "libs/db" }
 dependencies = [
     { name = "solbot-common" },
@@ -2247,7 +2247,7 @@ requires-dist = [
 
 [[package]]
 name = "solbot-services"
-version = "0.1.9"
+version = "0.2.0"
 source = { editable = "libs/services" }
 dependencies = [
     { name = "aiocache", extra = ["redis"] },
@@ -2320,7 +2320,7 @@ requires-dist = [
 
 [[package]]
 name = "solbot-tgbot"
-version = "0.1.9"
+version = "0.2.0"
 source = { editable = "app/tg-bot" }
 dependencies = [
     { name = "aiocache", extra = ["redis"] },
@@ -2371,7 +2371,7 @@ requires-dist = [
 
 [[package]]
 name = "solbot-trading"
-version = "0.1.9"
+version = "0.2.0"
 source = { editable = "app/trading" }
 dependencies = [
     { name = "aiocache", extra = ["redis"] },
@@ -2426,12 +2426,12 @@ requires-dist = [
 
 [[package]]
 name = "solbot-wallet-tracker"
-version = "0.1.9"
+version = "0.2.0"
 source = { editable = "app/wallet-tracker" }
 
 [[package]]
 name = "solbot-yellowstone-grpc"
-version = "0.1.9"
+version = "0.2.0"
 source = { editable = "libs/yellowstone_grpc" }
 dependencies = [
     { name = "grpcio" },

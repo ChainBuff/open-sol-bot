@@ -1,6 +1,6 @@
 [project]
 name = "solbot-cache"
-version = "0.1.9"
+version = "0.2.0"
 description = "Cache utilities for Solana Trading Bot"
 authors = [{ name = "mkdir700", email = "mkdir700@gmail.com" }]
 dependencies = [

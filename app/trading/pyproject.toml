@@ -1,6 +1,6 @@
 [project]
 name = "solbot-trading"
-version = "0.1.9"
+version = "0.2.0"
 description = "Trading for Solana"
 authors = [
     { name = "mkdir700", email = "mkdir700@gmail.com" },
