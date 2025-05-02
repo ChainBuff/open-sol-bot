@@ -89,13 +89,12 @@ class SmartWalletSwapAlertNotify:
         # 根据持仓变化方向判断代币兑换方向
         pre_amount_int = tx_event.pre_token_amount
         post_amount_int = tx_event.post_token_amount
-        direction = post_amount_int - pre_amount_int
 
-        if direction > 0:
+        if tx_event.tx_direction == "buy":
             # 从 SOL 到代币
             pre_amount = pre_amount_int / (10**tx_event.to_decimals)
             post_amount = post_amount_int / (10**tx_event.to_decimals)
-        elif direction < 0:
+        elif tx_event.tx_direction == "sell":
             # 从代币到 SOL
             pre_amount = pre_amount_int / (10**tx_event.from_decimals)
             post_amount = post_amount_int / (10**tx_event.from_decimals)
