@@ -130,7 +130,7 @@ class CopyTradeProcessor:
                     mint=tx_event.mint,
                     wallet=copytrade.owner,
                 )
-                if balance == 0:
+                if balance.is_zero:
                     logger.info(f"No holdings for {tx_event.mint}, skip...")
                     return
 

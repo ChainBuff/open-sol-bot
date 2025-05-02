@@ -18,3 +18,8 @@ class HoldingToken:
 class TokenAccountBalance:
     balance: float
     decimals: int
+    
+    @property
+    def is_zero(self) -> bool:
+        """判断余额是否为 0"""
+        return self.balance == 0
