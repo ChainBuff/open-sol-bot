@@ -4,7 +4,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 import pytest_asyncio
-from solbot_cache.blockhash import BlockhashCache
+#from solbot_cache.blockhash import BlockhashCache
+from cache_preloader.caches.blockhash import BlockhashCache
 from solders.hash import Hash
 
 

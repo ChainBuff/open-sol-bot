@@ -1,5 +1,6 @@
 from solbot_common.constants import PUMP_FUN_PROGRAM
-from solbot_common.utils.utils import get_async_client, get_bonding_curve_account
+from solbot_common.utils.utils import (get_async_client,
+                                       get_bonding_curve_account)
 from solders.pubkey import Pubkey  # type: ignore
 
 from .cached import cached

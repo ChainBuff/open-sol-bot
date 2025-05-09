@@ -1,10 +1,43 @@
 import struct
-from dataclasses import dataclass
+from typing import Final
+
+from construct import Flag, Int64ul, Struct
 
 
-@dataclass
+class BondingCurveError(Exception):
+    """Exception raised for errors in bonding curve account data validation."""
+    pass
+
+# See: https://github.com/chainstacklabs/pump-fun-bot/blob/main/learning-examples/bonding-curve-progress/get_bonding_curve_status.py
+BONDING_CURVE_ACCOUNT_LAYOUT = Struct(
+    "virtual_token_reserves" / Int64ul,
+    "virtual_sol_reserves" / Int64ul,
+    "real_token_reserves" / Int64ul,
+    "real_sol_reserves" / Int64ul,
+    "token_total_supply" / Int64ul,
+    "complete" / Flag,
+)
+_EXPECTED_DISCRIMINATOR: Final[bytes] = struct.pack("<Q", 6966180631402821399)
+
 class BondingCurveAccount:
-    discriminator: int
+    """ 
+    Represents the state of a bonding curve account.
+    
+    Attributes:
+        virtual_token_reserves: Virtual token reserves in the curve
+        virtual_sol_reserves: Virtual SOL reserves in the curve
+        real_token_reserves: Real token reserves in the curve
+        real_sol_reserves: Real SOL reserves in the curve
+        token_total_supply: Total token supply in the curve
+        complete: Whether the curve has completed and liquidity migrated
+    """
+    def __init__(self, data: bytes) -> None:
+        if data[:8] != _EXPECTED_DISCRIMINATOR:
+            raise ValueError("Invalid curve state discriminator")
+
+        parsed = BONDING_CURVE_ACCOUNT_LAYOUT.parse(data[8:])
+        self.__dict__.update(parsed)
+
     virtual_token_reserves: int
     virtual_sol_reserves: int
     real_token_reserves: int
@@ -14,7 +47,7 @@ class BondingCurveAccount:
 
     def get_buy_price(self, amount: int) -> int:
         if self.complete:
-            raise Exception("Curve is complete")
+            raise BondingCurveError("Curve is complete")
 
         if amount <= 0:
             return 0
@@ -36,7 +69,7 @@ class BondingCurveAccount:
 
     def get_sell_price(self, amount: int, fee_basis_points: int) -> int:
         if self.complete:
-            raise Exception("Curve is complete")
+            raise BondingCurveError("Curve is complete")
 
         if amount <= 0:
             return 0
@@ -74,33 +107,15 @@ class BondingCurveAccount:
         fee = (total_sell_value * fee_basis_points) // 10000
         return total_sell_value + fee
 
-    @classmethod
-    def from_buffer(cls, buffer: bytes) -> "BondingCurveAccount":
-        """
-        从字节缓冲区解析账户数据
-        格式: <Q Q Q Q Q Q ?
-        Q: unsigned long long (8 bytes)
-        ?: boolean (1 byte)
-        """
-        try:
-            (
-                discriminator,
-                virtual_token_reserves,
-                virtual_sol_reserves,
-                real_token_reserves,
-                real_sol_reserves,
-                token_total_supply,
-                complete,
-            ) = struct.unpack("<QQQQQQ?", buffer)
-
-            return cls(
-                discriminator=discriminator,
-                virtual_token_reserves=virtual_token_reserves,
-                virtual_sol_reserves=virtual_sol_reserves,
-                real_token_reserves=real_token_reserves,
-                real_sol_reserves=real_sol_reserves,
-                token_total_supply=token_total_supply,
-                complete=complete,
-            )
-        except struct.error as e:
-            raise ValueError(f"Failed to decode buffer: {e}")
+    # @classmethod
+    # def from_buffer(cls, buffer: bytes) -> "BondingCurveAccount":
+    #     """
+    #     从字节缓冲区解析账户数据
+    #     格式: <Q Q Q Q Q Q ?
+    #     Q: unsigned long long (8 bytes)
+    #     ?: boolean (1 byte)
+    #     """
+    #     try:
+    #         return cls(buffer)
+    #     except struct.error as e:
+    #         raise BondingCurveError(f"Failed to decode buffer: {e}")

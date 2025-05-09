@@ -1,6 +1,6 @@
 import pytest
 from solders.signature import Signature
-from wallet_tracker.rpc.tx_detail_fetcher import TxDetailRawFetcher
+from wallet_tracker.wss.tx_detail_fetcher import TxDetailRawFetcher
 
 
 @pytest.mark.asyncio

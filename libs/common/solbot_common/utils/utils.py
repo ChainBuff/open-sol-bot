@@ -5,25 +5,36 @@ from jupiter_python_sdk.jupiter import Jupiter
 from loguru import logger
 from solana.rpc.api import Client
 from solana.rpc.async_api import AsyncClient
-from solders.keypair import Keypair  # type: ignore
-from solders.pubkey import Pubkey  # type: ignore
-from solders.signature import Signature  # type: ignore
-from solders.transaction_status import TransactionConfirmationStatus  # type: ignore
-from spl.token.instructions import get_associated_token_address
-
 from solbot_common.layouts.bonding_curve_account import BondingCurveAccount
 from solbot_common.layouts.global_account import GlobalAccount
 from solbot_common.layouts.mint_account import MintAccount
+from solders.keypair import Keypair  # type: ignore
+from solders.pubkey import Pubkey  # type: ignore
+from solders.signature import Signature  # type: ignore
+from solders.transaction_status import \
+    TransactionConfirmationStatus  # type: ignore
+from spl.token.instructions import get_associated_token_address
 
 
-def get_bonding_curve_pda(mint: Pubkey, program: Pubkey) -> Pubkey:
-    return Pubkey.find_program_address([b"bonding-curve", bytes(mint)], program)[0]
+def get_bonding_curve_pda(mint: Pubkey, program: Pubkey) -> tuple[Pubkey, int]:
+    """
+    Derives the associated bonding curve Program Derived Address (PDA) for a given mint.
+    
+    Args:
+        mint: The token mint address
+        program_id: The program ID for the bonding curve
+        
+    Returns:
+        Tuple of (bonding curve address, bump seed)
+    """
+
+    return Pubkey.find_program_address([b"bonding-curve", bytes(mint)], program)
 
 
 async def get_bonding_curve_account(
     client: AsyncClient, mint: Pubkey, program: Pubkey
 ) -> tuple[Pubkey, Pubkey, BondingCurveAccount] | None:
-    bonding_curve = get_bonding_curve_pda(mint, program)
+    bonding_curve = get_bonding_curve_pda(mint, program)[0]
     associated_bonding_curve = get_associated_token_address(bonding_curve, mint)
 
     account_info = await client.get_account_info_json_parsed(bonding_curve)
@@ -32,7 +43,7 @@ async def get_bonding_curve_account(
     value = account_info.value
     if value is None:
         return None
-    bonding_curve_account = BondingCurveAccount.from_buffer(bytes(value.data))
+    bonding_curve_account = BondingCurveAccount(bytes(value.data))
     return (bonding_curve, associated_bonding_curve, bonding_curve_account)
 
 
