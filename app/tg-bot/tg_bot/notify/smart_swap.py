@@ -15,7 +15,6 @@ from solbot_cache.token_info import TokenInfoCache
 from solbot_common.cp.tx_event import TxEventConsumer
 from solbot_common.log import logger
 from solbot_common.types import TxEvent, TxType
-
 from tg_bot.keyboards.notify_swap import notify_swap_keyboard
 from tg_bot.services.monitor import MonitorService
 from tg_bot.templates import render_notify_swap
@@ -86,8 +85,21 @@ class SmartWalletSwapAlertNotify:
         # 计算实际金额（考虑 decimals）
         from_amount = tx_event.from_amount / (10**tx_event.from_decimals)
         to_amount = tx_event.to_amount / (10**tx_event.to_decimals)
-        pre_amount = tx_event.pre_token_amount / (10**tx_event.to_decimals)
-        post_amount = tx_event.post_token_amount / (10**tx_event.to_decimals)
+        
+        # 根据持仓变化方向判断代币兑换方向
+        pre_amount_int = tx_event.pre_token_amount
+        post_amount_int = tx_event.post_token_amount
+
+        if tx_event.tx_direction == "buy":
+            # 从 SOL 到代币
+            pre_amount = pre_amount_int / (10**tx_event.to_decimals)
+            post_amount = post_amount_int / (10**tx_event.to_decimals)
+        elif tx_event.tx_direction == "sell":
+            # 从代币到 SOL
+            pre_amount = pre_amount_int / (10**tx_event.from_decimals)
+            post_amount = post_amount_int / (10**tx_event.from_decimals)
+        else:
+            raise ValueError("代币数量没有变化的交易消息")
 
         # 计算持仓变化
         position_change = post_amount - pre_amount

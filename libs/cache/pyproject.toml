@@ -1,6 +1,6 @@
 [project]
 name = "solbot-cache"
-version = "0.2.0"
+version = "0.2.1"
 description = "Cache utilities for Solana Trading Bot"
 authors = [{ name = "mkdir700", email = "mkdir700@gmail.com" }]
 dependencies = [
@@ -9,7 +9,7 @@ dependencies = [
     "solana>=0.35.1",
     "python-dotenv>=1.0.1",
     "loguru>=0.7.2",
-    "solders>=0.21.0",
+    "solders>=0.25.0",
     "base58>=2.1.1",
     "tomli>=2.1.0",
     "sqlmodel>=0.0.22",

@@ -127,24 +127,22 @@ wheels = [
 
 [[package]]
 name = "anchorpy"
-version = "0.20.1"
+version = "0.21.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anchorpy-core" },
     { name = "based58" },
     { name = "borsh-construct" },
     { name = "construct-typing" },
-    { name = "more-itertools" },
     { name = "pyheck" },
     { name = "solana" },
     { name = "solders" },
     { name = "toml" },
     { name = "toolz" },
-    { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/91/bc/a8f157ba0b52c6ec1a71d482f85ccb0a1185c8c81777c9fde99c3dfc68b3/anchorpy-0.20.1.tar.gz", hash = "sha256:e4ac7e3e742a4a31165da2cdded44bfec8d03802488beb36f6735d1c9351fe08", size = 48046 }
+sdist = { url = "https://files.pythonhosted.org/packages/60/11/121af8c8261944e1b9e5bae6ed022350c5b992c7632e8f8aacd77881599a/anchorpy-0.21.0.tar.gz", hash = "sha256:3c5b364cbe3386a8912c314f62f3da71e268c9163d77548246226e2c6b6a36cc", size = 646563 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c6/9e/29c2ceee88bfb57c254ca56e235c269c3e75831c794059e69869e7e0b48a/anchorpy-0.20.1-py3-none-any.whl", hash = "sha256:78c82b56e340240fd00697cde08cd63f84ccc48b34532f0eed4a570f7054aec9", size = 63048 },
+    { url = "https://files.pythonhosted.org/packages/21/df/9978a6637ba31c216721cc8f7d18595eb9ef5e485c06a7d82a05def419a9/anchorpy-0.21.0-py3-none-any.whl", hash = "sha256:5740a1420052ba5bbfe8cc281b3e621b38c0f845931d1f2ca00bd11e496fd44b", size = 63310 },
 ]
 
 [[package]]
@@ -1239,15 +1237,6 @@ wheels = [
 ]
 
 [[package]]
-name = "more-itertools"
-version = "8.14.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c7/0c/fad24ca2c9283abc45a32b3bfc2a247376795683449f595ff1280c171396/more-itertools-8.14.0.tar.gz", hash = "sha256:c09443cd3d5438b8dafccd867a6bc1cb0894389e90cb53d227456b0b0bccb750", size = 102642 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/0b/ff/1ad78678bee731ae5414ea5e97396b3f91de32186028daa614d322ac5a8b/more_itertools-8.14.0-py3-none-any.whl", hash = "sha256:1bc4f91ee5b1b31ac7ceacc17c09befe6a40a503907baf9c839c229b5095cfd2", size = 52193 },
-]
-
-[[package]]
 name = "multidict"
 version = "6.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2060,7 +2049,7 @@ wheels = [
 
 [[package]]
 name = "solana"
-version = "0.35.1"
+version = "0.36.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "construct-typing" },
@@ -2069,9 +2058,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/01/89/c857fce4b38b5a1fb7a43193dc7263059282b13cd3158ef471b820e266b5/solana-0.35.1.tar.gz", hash = "sha256:8768246c66f9b8aebcb85cb89465240cc42aab3bf802c15ebae2408f2076eaa1", size = 56603 }
+sdist = { url = "https://files.pythonhosted.org/packages/03/7d/ff1006867566c802c8d99b528893bb04b1ec4f9e18191db32e143773e68d/solana-0.36.6.tar.gz", hash = "sha256:aa2403bc36bb06ea5bf56f6856373a50ae8b1c3a45261d5a4c911350f7427c00", size = 52132 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/83/11/b60948409cef40f9b381e43ca2e28cf554844653d79b2f42109e14fa186d/solana-0.35.1-py3-none-any.whl", hash = "sha256:f1388142f8e7edcf3fba52ddd021bab5ceaeab491b5100203732f40963f3742f", size = 66612 },
+    { url = "https://files.pythonhosted.org/packages/4d/7a/56650a6771626cd9509b19fb5e26ecd5a4c7057679f803a437f73ea62507/solana-0.36.6-py3-none-any.whl", hash = "sha256:c0526b602d834cb762102f854be469be6657731db0d016a985bbabd6212dd09d", size = 62272 },
 ]
 
 [[package]]
@@ -2146,7 +2135,7 @@ requires-dist = [
     { name = "solana", specifier = ">=0.35.1" },
     { name = "solana-tx-parser", specifier = ">=0.0.1" },
     { name = "solbot-common" },
-    { name = "solders", specifier = ">=0.21.0" },
+    { name = "solders", specifier = ">=0.25.0" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.36" },
     { name = "sqlmodel", specifier = ">=0.0.22" },
     { name = "tomli", specifier = ">=2.1.0" },
@@ -2221,7 +2210,7 @@ requires-dist = [
     { name = "sentry-sdk", specifier = ">=2.21.0" },
     { name = "solana", specifier = ">=0.35.1" },
     { name = "solana-tx-parser", specifier = ">=0.0.1" },
-    { name = "solders", specifier = ">=0.21.0" },
+    { name = "solders", specifier = ">=0.25.0" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.36" },
     { name = "sqlmodel", specifier = ">=0.0.22" },
     { name = "tomli", specifier = ">=2.0.0" },
@@ -2312,7 +2301,7 @@ requires-dist = [
     { name = "solbot-cache" },
     { name = "solbot-common" },
     { name = "solbot-db" },
-    { name = "solders", specifier = ">=0.21.0" },
+    { name = "solders", specifier = ">=0.25.0" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.36" },
     { name = "sqlmodel", specifier = ">=0.0.22" },
     { name = "tomli", specifier = ">=2.1.0" },
@@ -2364,7 +2353,7 @@ requires-dist = [
     { name = "sentry-sdk", specifier = ">=2.21.0" },
     { name = "solana", specifier = ">=0.35.1" },
     { name = "solana-tx-parser", specifier = ">=0.0.1" },
-    { name = "solders", specifier = ">=0.21.0" },
+    { name = "solders", specifier = ">=0.25.0" },
     { name = "sqlmodel", specifier = ">=0.0.22" },
     { name = "tomli", specifier = ">=2.1.0" },
 ]
@@ -2419,7 +2408,7 @@ requires-dist = [
     { name = "sentry-sdk", specifier = ">=2.21.0" },
     { name = "solana", specifier = ">=0.35.1" },
     { name = "solana-tx-parser", specifier = ">=0.0.1" },
-    { name = "solders", specifier = ">=0.21.0" },
+    { name = "solders", specifier = ">=0.25.0" },
     { name = "sqlmodel", specifier = ">=0.0.22" },
     { name = "tomli", specifier = ">=2.1.0" },
 ]
@@ -2452,22 +2441,22 @@ requires-dist = [
 
 [[package]]
 name = "solders"
-version = "0.21.0"
+version = "0.26.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jsonalias" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e8/bc/5c6f78e403854ebff50d86c3ec4b8fe1240777b3c8f6d94d1f1f85c479c4/solders-0.21.0.tar.gz", hash = "sha256:a228c09b690f215acb01c55e17246efdfdb7c013f7332b057ecd0499363868ad", size = 178894 }
+sdist = { url = "https://files.pythonhosted.org/packages/87/96/23ad2e43e2676b78834064fe051e3db3ce1899336ecd4797f92fcd06113a/solders-0.26.0.tar.gz", hash = "sha256:057533892d6fa432c1ce1e2f5e3428802964666c10b57d3d1bcaab86295f046c", size = 181123 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/82/3a/80a252eccbd468a07a89747c9aa55c06f5897131e19722523946673422a4/solders-0.21.0-cp37-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:7df88e59aea016644c0b2eac84f2f931d5aa570c654132770263b26f2928fdb7", size = 27152347 },
-    { url = "https://files.pythonhosted.org/packages/b2/c1/291ae85720ad0d4ff0a34076ea7c44a6ece552f7b8257781e06f9851d9fe/solders-0.21.0-cp37-abi3-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:a11dfc5933707c466880ef2116f1bffc74659bf677b79479f4280247d60543c9", size = 8103586 },
-    { url = "https://files.pythonhosted.org/packages/b8/b2/af654348941ed5670ab20aa6d642caec3053cc29bf929a63d2f785e624e7/solders-0.21.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:33a28fedff80defd01455844700e3b9924c06a87d7ca93aff0a9298a9eb902ac", size = 17260197 },
-    { url = "https://files.pythonhosted.org/packages/72/0a/895638da97e15a54845252ecfda6ed47f7fb221b078ef44a240e88431005/solders-0.21.0-cp37-abi3-manylinux_2_28_aarch64.whl", hash = "sha256:3ac70badd0da7e0d87db1c9c2edac63e48470903fd5f28e2fd6b22c7624ef52f", size = 8341269 },
-    { url = "https://files.pythonhosted.org/packages/9e/23/cab1a1e1e4397d7d947c3c649901664cfef4c1ee4a0efccbcb0e8a74ad33/solders-0.21.0-cp37-abi3-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:ac79feca36470945ac026433828d4105a4b3bada5422ea77b1083c0e8fe93872", size = 9487737 },
-    { url = "https://files.pythonhosted.org/packages/b4/00/9153205ab01afd829d8f30c25090974f7b7c7b56f4b7725393e58de08d86/solders-0.21.0-cp37-abi3-musllinux_1_2_i686.whl", hash = "sha256:6993e2e1709aa04b94267597dc31e29ae5625cde3d65fdf452c6366c6c7f41cd", size = 9326672 },
-    { url = "https://files.pythonhosted.org/packages/28/66/e788d1edae8472ba5d0fc9833d03611ee25227212f1719089078b38d1b80/solders-0.21.0-cp37-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:9521974ffa8b0fc8a4aa3b65f9057392c214a814c10af4f8cd2ad1d3f943ae61", size = 17441129 },
-    { url = "https://files.pythonhosted.org/packages/3d/37/4926284e5d463edf3fe826c87f93016fc68f27c763f57f47b77b97127e9e/solders-0.21.0-cp37-abi3-win_amd64.whl", hash = "sha256:7258b0faa97ab3dc2e1951082af63f2971f178519540f7abac43ec2385d84b7f", size = 5294808 },
+    { url = "https://files.pythonhosted.org/packages/a5/ce/58bbb4d2c696e770cdd37e5f6dc2891ef7610c0c085bf400f9c42dcff1ad/solders-0.26.0-cp37-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:9c1a0ef5daa1a05934af5fb6e7e32eab7c42cede406c80067fee006f461ffc4a", size = 24344472 },
+    { url = "https://files.pythonhosted.org/packages/5a/35/221cec0e5900c2202833e7e9110c3405a2d96ed25e110b247f88b8782e29/solders-0.26.0-cp37-abi3-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:1b964efbd7c0b38aef3bf4293ea5938517ae649b9a23e7cd147d889931775aab", size = 6674734 },
+    { url = "https://files.pythonhosted.org/packages/41/33/d17b7dbc92672351d59fc65cdb93b8924fc682deba09f6d96f25440187ae/solders-0.26.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:36e6a769c5298b887b7588edb171d93709a89302aef75913fe893d11c653739d", size = 13472961 },
+    { url = "https://files.pythonhosted.org/packages/bb/e7/533367d815ab000587ccc37d89e154132f63347f02dcaaac5df72bd851de/solders-0.26.0-cp37-abi3-manylinux_2_28_aarch64.whl", hash = "sha256:b3cc55b971ec6ed1b4466fa7e7e09eee9baba492b8cd9e3204e3e1a0c5a0c4aa", size = 6886198 },
+    { url = "https://files.pythonhosted.org/packages/52/e0/ab41ab3df5fdf3b0e55613be93a43c2fe58b15a6ea8ceca26d3fba02e3c6/solders-0.26.0-cp37-abi3-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:3e3973074c17265921c70246a17bcf80972c5b96a3e1ed7f5049101f11865092", size = 7319170 },
+    { url = "https://files.pythonhosted.org/packages/7d/34/5174ce592607e0ac020aff203217f2f113a55eec49af3db12945fea42d89/solders-0.26.0-cp37-abi3-musllinux_1_2_i686.whl", hash = "sha256:59b52419452602f697e659199a25acacda8365971c376ef3c0687aecdd929e07", size = 7134977 },
+    { url = "https://files.pythonhosted.org/packages/ba/5e/822faabda0d473c29bdf59fe8869a411fd436af8ca6f5d6e89f7513f682f/solders-0.26.0-cp37-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:5946ec3f2a340afa9ce5c2b8ab628ae1dea2ad2235551b1297cafdd7e3e5c51a", size = 6984222 },
+    { url = "https://files.pythonhosted.org/packages/23/e8/dc992f677762ea2de44b7768120d95887ef39fab10d6f29fb53e6a9882c1/solders-0.26.0-cp37-abi3-win_amd64.whl", hash = "sha256:5466616610170aab08c627ae01724e425bcf90085bc574da682e9f3bd954900b", size = 5480492 },
 ]
 
 [[package]]

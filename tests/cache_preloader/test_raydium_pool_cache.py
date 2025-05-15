@@ -2,7 +2,9 @@ from unittest.mock import AsyncMock, patch
 
 import aioredis
 import pytest
-from cache_preloader.caches.raydium_pool import MintPoolDataCache, RaydiumPoolCache
+from cache_preloader.caches.raydium_pool import RaydiumPoolCache
+
+from libs.cache.solbot_cache.rayidum import MintPoolDataCache
 
 
 @pytest.fixture

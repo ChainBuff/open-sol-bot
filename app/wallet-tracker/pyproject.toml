@@ -1,6 +1,6 @@
 [project]
 name = "solbot-wallet-tracker"
-version = "0.2.0"
+version = "0.2.1"
 description = "Wallet tracking service for Solana Trading Bot"
 authors = [{ name = "mkdir700", email = "mkdir700@gmail.com" }]
 dependencies = [

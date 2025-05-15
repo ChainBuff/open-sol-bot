@@ -178,6 +178,7 @@ class RawTXParser(TransactionParserInterface):
             to_decimals = token_amount_change["decimals"]
             pre_token_balance = token_amount_change["pre_balance"]
             post_token_balance = token_amount_change["post_balance"]
+            tx_direction = "buy"
         else:
             from_amount = abs(token_amount_change["change_amount"])
             from_decimals = token_amount_change["decimals"]
@@ -185,6 +186,7 @@ class RawTXParser(TransactionParserInterface):
             to_decimals = 9
             pre_token_balance = token_amount_change["pre_balance"]
             post_token_balance = token_amount_change["post_balance"]
+            tx_direction = "sell"
 
         return TxEvent(
             signature=signature,
@@ -195,7 +197,7 @@ class RawTXParser(TransactionParserInterface):
             to_decimals=to_decimals,
             mint=mint,
             tx_type=tx_type,
-            tx_direction="buy" if sol_amount_change["change_amount"] < 0 else "sell",
+            tx_direction=tx_direction,
             timestamp=timestamp,
             pre_token_amount=pre_token_balance,
             post_token_amount=post_token_balance,

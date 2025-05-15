@@ -119,7 +119,7 @@ def keypair_to_private_key(keypair: Keypair) -> str:
     from base58 import b58encode
 
     # 获取完整的密钥对字节（64字节）
-    keypair_bytes = bytes(keypair.to_bytes_array())
+    keypair_bytes = bytes(keypair.to_bytes())
     return b58encode(keypair_bytes).decode("ascii")
 
 

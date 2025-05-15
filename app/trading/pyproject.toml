@@ -1,14 +1,12 @@
 [project]
 name = "solbot-trading"
-version = "0.2.0"
+version = "0.2.1"
 description = "Trading for Solana"
-authors = [
-    { name = "mkdir700", email = "mkdir700@gmail.com" },
-]
+authors = [{ name = "mkdir700", email = "mkdir700@gmail.com" }]
 dependencies = [
     # Solana 相关依赖
     "solana>=0.35.1",
-    "solders>=0.21.0",
+    "solders>=0.25.0",
     "base58>=2.1.1",
     "anchorpy>=0.20.1",
     "solana-tx-parser>=0.0.1",
