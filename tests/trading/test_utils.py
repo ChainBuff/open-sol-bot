@@ -10,20 +10,39 @@ from libs.common.solbot_common.utils.utils import (
 def test_get_bonding_curve_pda():
     mint = Pubkey.from_string("7YYfWqoKvZmGfX4MgE9TuTpPZz9waHAUUxshFmwqpump")
     result = get_bonding_curve_pda(mint, PUMP_FUN_PROGRAM)
-    assert str(result) == "8o4o1rhJQ2AoCHBRvumBAmbPH9pxrxWCAYBCfEFcniee"
+    assert str(result[0]) == "8o4o1rhJQ2AoCHBRvumBAmbPH9pxrxWCAYBCfEFcniee"
+    assert result[1] == 255
 
 
 def test_get_associated_bonding_curve():
     mint = Pubkey.from_string("7YYfWqoKvZmGfX4MgE9TuTpPZz9waHAUUxshFmwqpump")
     bonding_curve = get_bonding_curve_pda(mint, PUMP_FUN_PROGRAM)
-    result = get_associated_bonding_curve(bonding_curve, mint)
+    result = get_associated_bonding_curve(bonding_curve[0], mint)
     assert str(result) == "GDmfeokYLpfG4s1MdLcSYTriEgapkBL4hCupMk5UTRev"
 
 
 @pytest.mark.asyncio
-async def test_get_bonding_curve_account():
+@pytest.mark.parametrize("mint_address,expected_values", [
+    ("7YYfWqoKvZmGfX4MgE9TuTpPZz9waHAUUxshFmwqpump", {
+        "virtual_token_reserves": 1072999997348202,
+        "virtual_sol_reserves": 30000000087,
+        "real_token_reserves": 793099997348202,
+        "real_sol_reserves": 87,
+        "token_total_supply": 1000000000000000,
+        "complete": False
+    }),
+    ("A7S4UkbpAXSVfG196Qvr8TMvpvx3Lz2Q4X2RecuApump", {
+        "virtual_token_reserves": 0,
+        "virtual_sol_reserves": 0,
+        "real_token_reserves": 0,
+        "real_sol_reserves": 0,
+        "token_total_supply": 1000000000000000,
+        "complete": True
+    }),
+])
+async def test_get_bonding_curve_account(mint_address, expected_values):
     client = get_async_client()
-    mint = Pubkey.from_string("7YYfWqoKvZmGfX4MgE9TuTpPZz9waHAUUxshFmwqpump")
+    mint = Pubkey.from_string(mint_address)
     result = await get_bonding_curve_account(
         client,
         mint,
@@ -31,13 +50,12 @@ async def test_get_bonding_curve_account():
     )
     assert result
     bonding_curve, associated_bonding_curve, account = result
-    assert account.discriminator == 6966180631402821399
-    assert account.virtual_token_reserves == 1072999997348202
-    assert account.virtual_sol_reserves == 30000000087
-    assert account.real_token_reserves == 793099997348202
-    assert account.real_sol_reserves == 87
-    assert account.token_total_supply == 1000000000000000
-    assert not account.complete
+    assert account.virtual_token_reserves == expected_values["virtual_token_reserves"]
+    assert account.virtual_sol_reserves == expected_values["virtual_sol_reserves"]
+    assert account.real_token_reserves == expected_values["real_token_reserves"]
+    assert account.real_sol_reserves == expected_values["real_sol_reserves"]
+    assert account.token_total_supply == expected_values["token_total_supply"]
+    assert account.complete == expected_values["complete"]
 
 
 @pytest.mark.asyncio
