@@ -1,4 +1,4 @@
-"""Tests for the trading route finding logic"""
+"""Tests for the trading route finding logic. This uses actual RPC client (and connects to the network)"""
 
 
 import pytest
